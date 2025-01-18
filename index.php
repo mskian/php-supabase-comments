@@ -71,7 +71,7 @@ $page = isset($_GET['page'])
     ? filter_var($_GET['page'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) 
     : 1;
 $page = ($page === false) ? 1 : $page;
-$page = htmlspecialchars($page, ENT_QUOTES, 'UTF-8');
+$page = sanitizeInput($page);
 $offset = ($page - 1) * $commentsPerPage;
 
 $notifications = [];
@@ -249,7 +249,7 @@ $totalPages = ceil($totalComments / $commentsPerPage);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>User Comment Forum</title>
-<meta name="description" content="User Comment Forum: Share your Messages, feedbacks, Quotes and Status.">
+<meta name="description" content="User Comment Forum: Share your messages, feedback, quotes, and status.">
 <?php $current_page = htmlspecialchars("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", ENT_QUOTES, 'UTF-8');
     echo '<link rel="canonical" href="' . $current_page . '" />';
 ?>
@@ -436,7 +436,7 @@ button {
                 </div>
                <div class="field">
                     <div class="control">
-                        <div class="cf-turnstile" data-sitekey="<?php echo $siteKey; ?>"></div>
+                        <div class="cf-turnstile" data-sitekey="<?= $siteKey ?>"></div>
                     </div>
                </div>
                 <div class="field">

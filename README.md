@@ -1,19 +1,19 @@
 # PHP Supabase Comments
 
-A Simple Comment system built using PHP and Supabase.
+A simple comment system built with PHP and Supabase.  
 
 ## Features
 
-- PHP (7.4 to 8.x.x) Support
-- Supabase for Store Comments in database
+- PHP (7.4 to 8.x.x) support
+- Supabase for storing comments in the database
 - Pagination for comments
-- Modern and Responsive UI using Bulma CSS
-- Cover Flexible Security for input form and spam
-- Cloudflare turnstile for extra spam protection
+- Modern and responsive UI using Bulma CSS
+- Comprehensive security for input forms and spam prevention
+- Cloudflare Turnstile for additional spam protection  
 
 ## setup
 
-- Create a database in Supabase - <https://supabase.com/docs/guides/database/overview>
+- Create a database in Supabase: <https://supabase.com/docs/guides/database/overview>
 
 ```sql
 -- Create the table with necessary fields
@@ -25,8 +25,8 @@ CREATE TABLE user_comments (
 );
 ```
 
-- Also Create Cloudflare turnstile - <https://developers.cloudflare.com/turnstile/>
-- create `.env` file to add the required API keys
+- Also, create Cloudflare Turnstile: <https://developers.cloudflare.com/turnstile/>
+- Create a `.env` file to add the required API keys
 
 ```env
 
@@ -43,7 +43,7 @@ url=https://challenges.cloudflare.com/turnstile/v0/siteverify
 
 ```
 
-- Done
+- Done  
 
 ## LICENSE
 
