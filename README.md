@@ -2,6 +2,8 @@
 
 A simple comment system built with PHP and Supabase.  
 
+![PHP Supbase Comments](./screenshot/3.png)  
+
 ## Features
 
 - PHP (7.4 to 8.x.x) support
@@ -10,6 +12,10 @@ A simple comment system built with PHP and Supabase.
 - Modern and responsive UI using Bulma CSS
 - Comprehensive security for input forms and spam prevention
 - Cloudflare Turnstile for additional spam protection  
+
+![PHP Supbase Comments](./screenshot/1.png)  
+
+![PHP Supbase Comments](./screenshot/2.png)  
 
 ## setup
 
@@ -44,6 +50,10 @@ url=https://challenges.cloudflare.com/turnstile/v0/siteverify
 ```
 
 - Done  
+
+## Base Concept
+
+This project was inspired from Supacomments dev by [@mcnaveen](https://github.com/mcnaveen) - [Blazing fast comment system with Sveltejs and Supabase](https://github.com/mcnaveen/SupaComments)
 
 ## LICENSE
 
