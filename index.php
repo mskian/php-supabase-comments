@@ -373,6 +373,11 @@ button {
     font-weight: 600;
     color: #6F1E51;
 }
+.quote a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6F1E51;
+}
 @media (max-width: 768px) {
     .quote {
         font-size: 1rem;
@@ -452,7 +457,7 @@ button {
                       <article id="<?= htmlspecialchars($row['id']) ?>">
                        <div class="content">
                        <p class="has-text-dark">
-                       <cite><?= htmlspecialchars($row['name']) ?>:  <span class="date"><em id="created_at_<?= htmlspecialchars($row['id']) ?>" data-time="<?= htmlspecialchars($row['created_at']) ?>"></em></span></cite>
+                       <cite><a href="/post.php?id=<?= htmlspecialchars($row['id']) ?>"><?= htmlspecialchars($row['name']) ?></a>:  <span class="date"><em id="created_at_<?= htmlspecialchars($row['id']) ?>" data-time="<?= htmlspecialchars($row['created_at']) ?>"></em></span></cite>
                        <br />
                        <?= nl2br(htmlspecialchars($row['comment'])) ?>
                        </p>

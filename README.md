@@ -49,6 +49,23 @@ url=https://challenges.cloudflare.com/turnstile/v0/siteverify
 
 ```
 
+- View Single Comments/status by ID
+
+```sh
+http://localhost:6022/post.php?id=18
+```
+
+- SEO Friendly URL
+
+```sh
+RewriteEngine On
+RewriteRule ^post/([a-zA-Z0-9\-]+)$ post.php?id=$1 [L,QSA]
+```
+
+```sh
+http://localhost:6022/post/18
+```
+
 - Done  
 
 ## Base Concept
