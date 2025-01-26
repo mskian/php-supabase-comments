@@ -23,7 +23,7 @@ A simple comment system built with PHP and Supabase.
 
 ```sql
 -- Create the table with necessary fields
-CREATE TABLE user_comments (
+CREATE TABLE comments (
     id SERIAL PRIMARY KEY,            -- Auto-incrementing primary key
     name VARCHAR(255) NOT NULL,        -- Name of the user (max length 255)
     comment TEXT NOT NULL,            -- Comment field to store user input
