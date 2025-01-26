@@ -1,7 +1,8 @@
 <?php
 
-include './store.php';
-(new DevCoder\DotEnv('./.env'))->load();
+require_once 'store.php';
+$dotenv = new \DevCoder\DotEnv('.env');
+$dotenv->load();
 
 session_set_cookie_params([
     'secure' => true,
@@ -77,15 +78,15 @@ $offset = ($page - 1) * $commentsPerPage;
 $notifications = [];
 
 // Supabase Project URL and Project API Keys
-$supabaseUrl = getenv('supabaseUrl');
-$apiKey = getenv('apiKey');
-$pkey = getenv('pkey');
-$table = getenv('table');
+$supabaseUrl =  $_ENV['supabaseUrl'];
+$apiKey =  $_ENV['apiKey'];
+$pkey =  $_ENV['pkey'];
+$table =  $_ENV['table'];
 
 // Cloudflare turnstile sitekey and secretKey
-$secretKey = getenv('secretKey');
-$siteKey = getenv('siteKey');
-$url = getenv('url');
+$secretKey = $_ENV['secretKey'];
+$siteKey = $_ENV['siteKey'];
+$url = $_ENV['url'];
 
 function insertCommentToSupabase($name, $comment) {
     global $supabaseUrl, $apiKey, $table, $pkey;

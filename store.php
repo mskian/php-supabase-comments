@@ -5,56 +5,73 @@ namespace DevCoder;
 class DotEnv
 {
     /**
-     * The directory where the .env file can be located.
+     * The directory where the .env file is located.
      *
      * @var string
      */
-    protected string $path;
+    protected $path;
 
     /**
      * DotEnv constructor.
      *
-     * @param string $path
-     * @throws \InvalidArgumentException if the file doesn't exist.
+     * @param string $path Path to the .env file.
+     * @throws \InvalidArgumentException
      */
     public function __construct(string $path)
     {
         if (!file_exists($path)) {
-            throw new \InvalidArgumentException(sprintf('%s does not exist', $path));
+            throw new \InvalidArgumentException(sprintf('The .env file %s does not exist.', $path));
         }
+
+        if (!is_readable($path)) {
+            throw new \RuntimeException(sprintf('The .env file %s is not readable.', $path));
+        }
+
         $this->path = $path;
     }
 
     /**
-     * Loads the .env file and populates the environment variables.
+     * Load the environment variables from the .env file.
      *
      * @return void
-     * @throws \RuntimeException if the file is not readable.
+     * @throws \RuntimeException
      */
     public function load(): void
     {
-        if (!is_readable($this->path)) {
-            throw new \RuntimeException(sprintf('%s file is not readable', $this->path));
+        // Read file lines into an array
+        $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        if ($lines === false) {
+            throw new \RuntimeException('Failed to read the .env file.');
         }
 
-        $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        
+        // Process each line
         foreach ($lines as $line) {
-            // Skip comments and empty lines
-            if (strpos(trim($line), '#') === 0 || empty($line)) {
+            $line = trim($line);
+
+            // Skip comments (lines starting with # or empty lines)
+            if (empty($line) || $line[0] === '#') {
                 continue;
             }
 
-            // Split line into key-value pairs
-            [$name, $value] = explode('=', $line, 2);
-            $name = trim($name);
-            $value = trim($value);
+            // Split the line into key and value
+            $parts = explode('=', $line, 2);
 
-            // Set environment variables if they don't already exist
+            if (count($parts) !== 2) {
+                continue; // Skip malformed lines
+            }
+
+            $name = trim($parts[0]);
+            $value = trim($parts[1]);
+
+            // Avoid overriding existing variables in $_ENV and $_SERVER
             if (!array_key_exists($name, $_SERVER) && !array_key_exists($name, $_ENV)) {
-                putenv(sprintf('%s=%s', $name, $value));
+                // Set the environment variable
                 $_ENV[$name] = $value;
                 $_SERVER[$name] = $value;
+
+                // Also set the environment variable globally if required (optional)
+                // putenv(sprintf('%s=%s', $name, $value)); // Uncomment if needed for global access
             }
         }
     }

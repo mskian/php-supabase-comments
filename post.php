@@ -1,7 +1,8 @@
 <?php
 
-include './store.php';
-(new DevCoder\DotEnv('./.env'))->load();
+require_once 'store.php';
+$dotenv = new \DevCoder\DotEnv('.env');
+$dotenv->load();
 
 header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
@@ -16,10 +17,10 @@ $error_message = null;
 if (!$id) {
     $error_message = "Invalid or missing ID. Please provide a valid numeric ID.";
 } else {
-    $url = getenv('supabaseUrl') ."/rest/v1/comments?id=eq." . urlencode($id);
+    $url = $_ENV['supabaseUrl'] ."/rest/v1/comments?id=eq." . urlencode($id);
     $headers = [
-        "apikey:" . getenv('pkey'),
-        "Authorization: Bearer" . getenv('apiKey'),
+        "apikey:" . $_ENV['pkey'],
+        "Authorization: Bearer" . $_ENV['apiKey'],
         "Content-Type: application/json"
     ];
 
