@@ -223,7 +223,7 @@ button {
                     <p class="has-text-dark">
                     <cite><?= htmlspecialchars($post['name']) ?>:  <span class="date"><em id="created_at_<?= htmlspecialchars($post['id']) ?>" data-time="<?= htmlspecialchars($post['created_at']) ?>"></em></span></cite>
                     <br />
-                    <?= nl2br(htmlspecialchars($post['comment'])) ?>
+                    <?= nl2br($post['comment']) ?>
                    </p>
                    </div>
                    </article>

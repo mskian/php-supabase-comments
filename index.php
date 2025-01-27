@@ -458,7 +458,7 @@ button {
                       <article id="<?= htmlspecialchars($row['id']) ?>">
                        <div class="content">
                        <p class="has-text-dark">
-                       <cite><a href="/post.php?id=<?= htmlspecialchars($row['id']) ?>"><?= htmlspecialchars($row['name']) ?></a>:  <span class="date"><em id="created_at_<?= htmlspecialchars($row['id']) ?>" data-time="<?= htmlspecialchars($row['created_at']) ?>"></em></span></cite>
+                       <cite><a href="/post.php?id=<?= htmlspecialchars($row['id']) ?>" title="<?= htmlspecialchars($row['name']) ?>"><?= htmlspecialchars($row['name']) ?></a>:  <span class="date"><em id="created_at_<?= htmlspecialchars($row['id']) ?>" data-time="<?= htmlspecialchars($row['created_at']) ?>"></em></span></cite>
                        <br />
                        <?= nl2br(htmlspecialchars($row['comment'])) ?>
                        </p>
